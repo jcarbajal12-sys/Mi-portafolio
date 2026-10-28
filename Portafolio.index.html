@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Personal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0b1120;
+            color: white;
+            line-height: 1.7;
+        }
+
+        header {
+            background-color: #111c32;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        section {
+            padding: 85px 10%;
+            scroll-margin-top: 90px;
+        }
+
+        h2 {
+            color: #38bdf8;
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .inicio {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0b1120, #172e52);
+        }
+
+        .inicio h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .inicio h1 span {
+            color: #38bdf8;
+        }
+
+        .inicio h3 {
+            font-size: 23px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .inicio p {
+            max-width: 650px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .boton {
+            display: inline-block;
+            background-color: #0284c7;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        .boton:hover {
+            background-color: #38bdf8;
+            color: #0b1120;
+            transform: translateY(-4px);
+        }
+
+        .sobre-mi {
+            background-color: #111c32;
+            text-align: center;
+        }
+
+        .sobre-mi p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .tarjeta {
+            background-color: #17243c;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #263b58;
+            transition: 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.12);
+        }
+
+        .tarjeta h3 {
+            color: #38bdf8;
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .tarjeta p {
+            color: #cbd5e1;
+        }
+
+        .habilidades-blandas {
+            background-color: #111c32;
+        }
+
+        .proyectos {
+            background-color: #0b1120;
+        }
+
+        .proyecto {
+            background-color: #17243c;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid #263b58;
+            transition: 0.3s;
+        }
+
+        .proyecto:hover {
+            transform: scale(1.03);
+            border-color: #38bdf8;
+        }
+
+        .proyecto h3 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+
+        .proyecto p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .contacto {
+            background-color: #111c32;
+            text-align: center;
+        }
+
+        .contacto p {
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        .contacto a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .contacto a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #080d18;
+            color: #94a3b8;
+        }
+
+        .revelar {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+
+        .revelar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .inicio h1 {
+                font-size: 34px;
+            }
+
+            .inicio h3 {
+                font-size: 19px;
+            }
+
+            h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Mi Portafolio</div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="#habilidades">Habilidades</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="inicio" id="inicio">
+        <h1>Hola, soy <span>Joel Carbajal</span></h1>
+
+        <h3>Estudiante de Ingeniería en Software</h3>
+
+        <p>
+            Bienvenido a mi portafolio personal.
+            Aquí podrás conocer mis habilidades,
+            conocimientos y algunos de los proyectos
+            que he desarrollado durante mi formación académica,
+            además de que actualamente estoy cursando el cuarto
+            semestre de la licenciatura y llevo una materia que 
+            complemtó este proyecto.
+        </p>
+
+        <a href="#sobre-mi" class="boton">Conoce más sobre mí</a>
+    </section>
+
+    <section class="sobre-mi revelar" id="sobre-mi">
+        <h2>Sobre mí</h2>
+
+        <p>
+            Soy estudiante de Ingeniería en Software en la
+            Universidad Autónoma de Querétaro.
+
+            Me interesa mucho el mundo de la tecnología,
+            especialmente la programación, el desarrollo
+            de páginas web y las bases de datos.
+
+            Durante mi formación académica he aprendido
+            diferentes lenguajes de programación y herramientas
+            que me han permitido desarrollar proyectos
+            y mejorar mis conocimientos.
+
+            Me considero una persona responsable,
+            comprometida con mis estudios y con muchas
+            ganas de seguir aprendiendo.
+        </p>
+    </section>
+
+    <section class="revelar" id="habilidades">
+        <h2>Mis habilidades duras</h2>
+
+        <div class="contenedor">
+
+            <div class="tarjeta">
+                <h3>HTML y CSS</h3>
+                <p>
+                    Conocimientos en la creación y diseño
+                    de páginas web utilizando HTML y CSS.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>JavaScript</h3>
+                <p>
+                    Desarrollo de funciones, validaciones
+                    y operaciones para páginas web interactivas.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>C++ y C#</h3>
+                <p>
+                    Conocimientos en programación,
+                    estructuras de datos y resolución
+                    de problemas mediante algoritmos.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Bases de datos</h3>
+                <p>
+                    Conocimientos básicos en MySQL,
+                    MongoDB y manejo de información.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Redes</h3>
+                <p>
+                    Conocimientos de direccionamiento IP,
+                    configuración de redes y uso
+                    de Cisco Packet Tracer.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Idiomas</h3>
+                <p>
+                    Español como idioma nativo
+                    y conocimientos de inglés.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="habilidades-blandas revelar">
+        <h2>Mis habilidades blandas</h2>
+
+        <div class="contenedor">
+
+            <div class="tarjeta">
+                <h3>Trabajo en equipo</h3>
+                <p>
+                    Me gusta colaborar con otras personas
+                    para alcanzar objetivos en común.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Responsabilidad</h3>
+                <p>
+                    Procuro cumplir con mis actividades
+                    y compromisos de la mejor manera.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Comunicación</h3>
+                <p>
+                    Considero importante expresar mis ideas
+                    y escuchar las opiniones de los demás.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Resolución de problemas</h3>
+                <p>
+                    Me esfuerzo por encontrar soluciones
+                    prácticas ante diferentes situaciones.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Adaptabilidad</h3>
+                <p>
+                    Tengo disposición para aprender
+                    nuevas herramientas y tecnologías.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Organización</h3>
+                <p>
+                    Busco administrar mi tiempo
+                    para cumplir con mis objetivos.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="proyectos revelar" id="proyectos">
+        <h2>Mis proyectos</h2>
+
+        <div class="contenedor">
+
+            <div class="proyecto">
+                <h3>Calculadora de gasolina</h3>
+
+                <p>
+                    Página web desarrollada con HTML
+                    y JavaScript que permite calcular
+                    los litros de gasolina necesarios
+                    para un viaje y su costo aproximado.
+                </p>
+
+                <button class="boton" onclick="verProyecto(1)">
+                    Ver información
+                </button>
+            </div>
+
+            <div class="proyecto">
+                <h3>Prácticas de redes</h3>
+
+                <p>
+                    Configuración y simulación de redes
+                    mediante Cisco Packet Tracer,
+                    aplicando conocimientos de
+                    direccionamiento IP y ruteo estático.
+                </p>
+
+                <button class="boton" onclick="verProyecto(2)">
+                    Ver información
+                </button>
+            </div>
+
+            <div class="proyecto">
+                <h3>Estructuras de datos</h3>
+
+                <p>
+                    Desarrollo de programas en C++
+                    utilizando estructuras de datos,
+                    algoritmos de búsqueda,
+                    ordenamiento y grafos.
+                </p>
+
+                <button class="boton" onclick="verProyecto(3)">
+                    Ver información
+                </button>
+            </div>
+
+            <div class="proyecto">
+                <h3>Diseño de páginas web</h3>
+
+                <p>
+                    Creación de páginas web utilizando
+                    HTML, CSS, Flexbox y animaciones
+                    para mejorar su presentación visual.
+                </p>
+
+                <button class="boton" onclick="verProyecto(4)">
+                    Ver información
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contacto revelar" id="contacto">
+        <h2>Contacto</h2>
+
+        <p>
+            Si deseas comunicarte conmigo,
+            puedes utilizar los siguientes medios.
+        </p>
+
+        <p>
+            Correo:
+            <a href="joel32096@gmail.com">
+                joel32096@gmail.com
+            </a>
+        </p>
+
+        <p>
+            GitHub:
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+                github.com
+            </a>
+        </p>
+
+        <p>
+            Universidad Autónoma de Querétaro
+        </p>
+
+        <a href="joel32096@gmail.com" class="boton">
+            Enviar correo
+        </a>
+    </section>
+
+    <footer>
+        <p>
+            © 2026 Joel Carbajal |
+            Portafolio personal
+        </p>
+    </footer>
+
+    <script>
+        function verProyecto(numero) {
+            let mensaje = "";
+
+            if (numero === 1) {
+                mensaje = "Calculadora de gasolina: proyecto desarrollado con HTML y JavaScript para calcular el consumo y costo de combustible.";
+            } else if (numero === 2) {
+                mensaje = "Prácticas de redes: simulaciones realizadas en Cisco Packet Tracer para aprender sobre configuración y comunicación de redes.";
+            } else if (numero === 3) {
+                mensaje = "Estructuras de datos: programas desarrollados en C++ para practicar algoritmos, búsquedas y grafos.";
+            } else if (numero === 4) {
+                mensaje = "Diseño web: prácticas realizadas con HTML y CSS utilizando Flexbox, estilos y animaciones.";
+            }
+
+            alert(mensaje);
+        }
+
+        const elementos = document.querySelectorAll(".revelar");
+
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add("visible");
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        elementos.forEach((elemento) => {
+            observador.observe(elemento);
+        });
+    </script>
+
+</body>
+</html>
